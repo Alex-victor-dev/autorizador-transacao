@@ -27,8 +27,7 @@ public class CartaoApplicationService implements CartaoService {
 		clienteService.getClientePorId(idCliente);
 		Cartao cartao = cartaoRepository.salvaCartao(new Cartao(idCliente, cartaoRequest));
 		log.info("[finaliza] CartaoApplicationService - criaCartao");
-		return new CartaoResponse(cartao.getIdCartao(), 
-				cartao.getValidadeCartao(), cartao.getNumeroCartao());
+		return new CartaoResponse(cartao.getIdCartao(), cartao.getValidadeCartao(), cartao.getNumeroCartao());
 	}
 
 	@Override
