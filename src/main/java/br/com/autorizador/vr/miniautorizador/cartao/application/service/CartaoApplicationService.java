@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import br.com.autorizador.vr.miniautorizador.cartao.application.api.CartaoDetalhadoResponse;
 import br.com.autorizador.vr.miniautorizador.cartao.application.api.CartaoRequest;
 import br.com.autorizador.vr.miniautorizador.cartao.application.api.CartaoResponse;
 import br.com.autorizador.vr.miniautorizador.cartao.application.repository.CartaoRepository;
@@ -27,7 +28,15 @@ public class CartaoApplicationService implements CartaoService {
 		Cartao cartao = cartaoRepository.salvaCartao(new Cartao(idCliente, cartaoRequest));
 		log.info("[finaliza] CartaoApplicationService - criaCartao");
 		return new CartaoResponse(cartao.getIdCartao(), 
-				cartao.getValidadeCartao());
+				cartao.getValidadeCartao(), cartao.getNumeroCartao());
+	}
+
+	@Override
+	public CartaoDetalhadoResponse getCartaoPorNumero(String numeroCartao) {
+		log.info("[inicia] CartaoApplicationService - getCartaoPorNumero");
+		Cartao cartao = cartaoRepository.buscaCartaoPorNumero(numeroCartao);
+		log.info("[finaliza] CartaoApplicationService - getCartaoPorNumero");
+		return new CartaoDetalhadoResponse(cartao);
 	}
 
 }

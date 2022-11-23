@@ -10,4 +10,5 @@ public class CartaoResponse {
 
 	private UUID idCartao;
 	private LocalDate validadeCartao;
+	private String numeroCartao;
 }

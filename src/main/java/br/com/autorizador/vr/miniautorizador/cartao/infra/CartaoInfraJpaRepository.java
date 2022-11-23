@@ -8,4 +8,5 @@ import br.com.autorizador.vr.miniautorizador.cartao.domain.Cartao;
 
 public interface CartaoInfraJpaRepository extends JpaRepository<Cartao, UUID> {
 
+	Cartao findByNumeroCartao(String numeroCartao);
 }

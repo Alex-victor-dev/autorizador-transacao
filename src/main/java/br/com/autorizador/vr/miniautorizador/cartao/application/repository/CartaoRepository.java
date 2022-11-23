@@ -6,4 +6,6 @@ public interface CartaoRepository {
 
 	Cartao salvaCartao(Cartao cartao);
 
+	Cartao buscaCartaoPorNumero(String numeroCartao);
+
 }

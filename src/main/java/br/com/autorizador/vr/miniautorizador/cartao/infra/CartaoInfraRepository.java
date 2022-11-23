@@ -20,5 +20,12 @@ public class CartaoInfraRepository implements CartaoRepository {
 		log.info("[finaliza] CartaoInfraRepository - salvaCartao");
 		return cartao;
 	}
+	@Override
+	public Cartao buscaCartaoPorNumero(String numeroCartao) {
+		log.info("[inicia] CartaoInfraRepository - buscaCartaoPorNumero");
+		Cartao cartao = cartaoInfraJpaRepository.findByNumeroCartao(numeroCartao);
+		log.info("[finaliza] CartaoInfraRepository - buscaCartaoPorNumero");
+		return cartao;
+	}
 
 }

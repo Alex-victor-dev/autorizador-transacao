@@ -26,4 +26,13 @@ public class CartaoController implements CartaoAPI {
 		return cartao;
 	}
 
+	@Override
+	public CartaoDetalhadoResponse getCartaoPorNumero(String numeroCartao) {
+		log.info("[inicia] CartaoController - getCartaoPorNumero");
+		log.info("[idCliente] {}",numeroCartao);
+		CartaoDetalhadoResponse cartaoDetalhado = cartaoService.getCartaoPorNumero(numeroCartao);
+		log.info("[inicia] CartaoController - getCartaoPorNumero");
+		return cartaoDetalhado;
+	}
+
 }
