@@ -2,12 +2,12 @@ package br.com.autorizador.vr.miniautorizador.cliente.handler;
 
 import org.springframework.stereotype.Component;
 
-import br.com.autorizador.vr.miniautorizador.cartao.domain.Validacacao;
+import br.com.autorizador.vr.miniautorizador.cartao.domain.Validacao;
 
 @Component
 public class HandleException {
 
-	public Object throwExcecaoDeValidacao(Validacacao erro) throws Exception {
+	public Object throwExcecaoDeValidacao(Validacao erro) {
 		switch (erro) {
 		case SENHA_INVALIDA:
 			throw new SenhaInvalidaException();

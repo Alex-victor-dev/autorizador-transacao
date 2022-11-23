@@ -1,0 +1,18 @@
+package br.com.autorizador.vr.miniautorizador.cartao.application.api;
+
+import java.util.UUID;
+
+import br.com.autorizador.vr.miniautorizador.cartao.domain.StatusCompra;
+import lombok.Builder;
+import lombok.Value;
+
+@Value
+@Builder
+public class TransacaoResponse {
+
+	private StatusCompra statusCompra;
+	private Double valor;
+	private String numeroCartao;
+	private UUID idTransacao;
+
+}

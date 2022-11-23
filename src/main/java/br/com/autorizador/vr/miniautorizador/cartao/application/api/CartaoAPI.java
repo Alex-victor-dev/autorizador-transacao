@@ -26,5 +26,9 @@ public interface CartaoAPI {
 	@ResponseStatus(code = HttpStatus.OK)
 	CartaoDetalhadoResponse getCartaoPorNumero(@RequestParam String numeroCartao);
 	
+	@PostMapping("realizaTransacao")
+	@ResponseStatus(code = HttpStatus.OK)
+	TransacaoResponse postTransacao(@RequestBody @Valid TransacaoRequest transacaoRequest,@RequestParam String numeroCartao, @RequestParam String senha) ;
+	
 
 }

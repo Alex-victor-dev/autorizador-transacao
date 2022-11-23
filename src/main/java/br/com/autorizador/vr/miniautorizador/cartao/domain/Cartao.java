@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import br.com.autorizador.vr.miniautorizador.cartao.application.api.CartaoRequest;
+import br.com.autorizador.vr.miniautorizador.cliente.handler.HandleException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,6 +47,12 @@ public class Cartao {
 		this.limiteCartao = 500.0;
 		this.validadeCartao = LocalDate.now().plusYears(3).plusMonths(5);
 		this.dataHoraCriacaoCartao = LocalDate.now();
+	}
+
+	public void validarAtribuirNovoSaldo(Double valor, HandleException handleException) {
+		this.limiteCartao = this.limiteCartao >= valor ? this.limiteCartao - valor
+				: (Double) handleException.throwExcecaoDeValidacao(Validacao.SALDO_INSUFICIENTE);
+
 	}
 
 	private String gerarDigitosAleatorios(int digitos) {

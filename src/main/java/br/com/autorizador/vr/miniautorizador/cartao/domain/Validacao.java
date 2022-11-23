@@ -1,6 +1,6 @@
 package br.com.autorizador.vr.miniautorizador.cartao.domain;
 
-public enum Validacacao {
+public enum Validacao {
 
 	SALDO_INSUFICIENTE {
 		@Override

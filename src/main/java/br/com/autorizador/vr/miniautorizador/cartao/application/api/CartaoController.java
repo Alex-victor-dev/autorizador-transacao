@@ -35,4 +35,15 @@ public class CartaoController implements CartaoAPI {
 		return cartaoDetalhado;
 	}
 
+	@Override
+	public TransacaoResponse postTransacao(@Valid TransacaoRequest transacaoRequest, String numeroCartao,
+			String senha) {
+		log.info("[inicia] CartaoController - postTransacao");
+		log.info("[numeroCartao]{}", numeroCartao);
+		log.info("[senha]{}", senha);		
+		TransacaoResponse transacao = cartaoService.realizaTransacao(transacaoRequest, numeroCartao, senha);
+		log.info("[finaliza] CartaoController - postTransacao");
+		return transacao;
+	}
+
 }
