@@ -1,5 +1,6 @@
 package br.com.autorizador.vr.miniautorizador.cliente.application.api;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -27,9 +28,17 @@ public class ClienteController implements ClienteAPI {
 
 	@Override
 	public ClienteDetalhadoResponse getClientePorId(UUID idCliente) {
-		log.info("[inicia] ClienteController - criaCliente");
+		log.info("[inicia] ClienteController - getClientePorId");
 		ClienteDetalhadoResponse cliente = clienteService.getClientePorId(idCliente);
-		log.info("[finaliza] ClienteController - criaCliente");
+		log.info("[finaliza] ClienteController - getClientePorId");
+		return cliente;
+	}
+
+	@Override
+	public List<ClienteListResponse> getTodosClientes() {
+		log.info("[inicia] ClienteController - getTodosClientes");
+		List<ClienteListResponse> cliente = clienteService.getTodosClientes();
+		log.info("[finaliza] ClienteController - getTodosClientes");
 		return cliente;
 	}
 

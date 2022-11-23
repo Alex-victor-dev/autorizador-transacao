@@ -1,5 +1,6 @@
 package br.com.autorizador.vr.miniautorizador.cliente.application.api;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -24,6 +25,12 @@ public interface ClienteAPI {
 	@GetMapping("{idCliente}")
 	@ResponseStatus(code = HttpStatus.OK)
 	ClienteDetalhadoResponse getClientePorId(@PathVariable UUID idCliente);
+	
+	@GetMapping
+	@ResponseStatus(code = HttpStatus.OK)
+	List<ClienteListResponse> getTodosClientes();
+	
+	
 	
 
 }

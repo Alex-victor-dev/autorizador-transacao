@@ -1,5 +1,6 @@
 package br.com.autorizador.vr.miniautorizador.cliente.infra;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,14 @@ public class ClienteInfraRepository implements ClienteRepository {
 		Cliente cliente = clienteInfraJpaRepository.findById(idCliente)
 				.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Cliente Nao encontrado:" + idCliente));
 		log.info("[finaliza] ClienteInfraRepository- buscaClientePorId");
+		return cliente;
+	}
+
+	@Override
+	public List<Cliente> buscaTodosClientes() {
+		log.info("[inicia] ClienteInfraRepository - buscaTodosClientes");
+		List<Cliente> cliente = clienteInfraJpaRepository.findAll();
+		log.info("[finaliza] ClienteInfraRepository - buscaTodosClientes");
 		return cliente;
 	}
 
