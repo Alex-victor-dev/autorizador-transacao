@@ -1,9 +1,12 @@
 package br.com.autorizador.vr.miniautorizador.cliente.application.service;
 
+import java.util.UUID;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
 
+import br.com.autorizador.vr.miniautorizador.cliente.application.api.ClienteDetalhadoResponse;
 import br.com.autorizador.vr.miniautorizador.cliente.application.api.ClienteRequest;
 import br.com.autorizador.vr.miniautorizador.cliente.application.api.ClienteResponse;
 import br.com.autorizador.vr.miniautorizador.cliente.application.repository.ClienteRepository;
@@ -26,6 +29,14 @@ public class ClienteApplicationService implements ClienteService {
 		return ClienteResponse.builder()
 				.idCliente(cliente.getIdCliente())
 				.build();
+	}
+
+	@Override
+	public ClienteDetalhadoResponse getClientePorId(UUID idCliente) {
+		log.info("[inicia] ClienteApplicationService - getClientePorId");
+		Cliente cliente = clienteRepository.buscaClientePorId(idCliente);
+		log.info("[finaliza] ClienteApplicationService - getClientePorId");
+		return new ClienteDetalhadoResponse(cliente);
 	}
 
 }
