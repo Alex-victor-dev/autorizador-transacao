@@ -2,10 +2,12 @@ package br.com.autorizador.vr.miniautorizador.cliente.infra;
 
 import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import br.com.autorizador.vr.miniautorizador.cliente.application.repository.ClienteRepository;
 import br.com.autorizador.vr.miniautorizador.cliente.domain.Cliente;
+import br.com.autorizador.vr.miniautorizador.cliente.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -27,7 +29,8 @@ public class ClienteInfraRepository implements ClienteRepository {
 	@Override
 	public Cliente buscaClientePorId(UUID idCliente) {
 		log.info("[inicia] ClienteInfraRepository - buscaClientePorId");
-		Cliente cliente = clienteInfraJpaRepository.findById(idCliente).orElseThrow();
+		Cliente cliente = clienteInfraJpaRepository.findById(idCliente)
+				.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Cliente Nao encontrado:" + idCliente));
 		log.info("[finaliza] ClienteInfraRepository- buscaClientePorId");
 		return cliente;
 	}
