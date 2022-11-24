@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import br.com.autorizador.vr.miniautorizador.cartao.application.api.CartaoRequest;
-import br.com.autorizador.vr.miniautorizador.cliente.handler.HandleException;
+import br.com.autorizador.vr.miniautorizador.handler.HandleException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,10 +34,11 @@ public class Cartao {
 	@NotNull
 	private String numeroCartao;
 	@NotNull
-	@Size(max = 4)
+	@Size(min = 4, max = 4, message = "senha deve ter 4 digitos")
 	private String senha;
 	private Double limiteCartao;
 	private LocalDate validadeCartao;
+	@Column(name = "data_criacao")
 	private LocalDate dataHoraCriacaoCartao;
 
 	public Cartao(UUID idCliente, @Valid CartaoRequest cartaoRequest) {

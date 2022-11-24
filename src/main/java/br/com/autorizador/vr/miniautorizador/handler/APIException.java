@@ -1,4 +1,4 @@
-package br.com.autorizador.vr.miniautorizador.cliente.handler;
+package br.com.autorizador.vr.miniautorizador.handler;
 
 import java.util.Optional;
 

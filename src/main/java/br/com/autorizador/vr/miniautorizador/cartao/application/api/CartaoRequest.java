@@ -11,8 +11,7 @@ import lombok.Value;
 public class CartaoRequest {
 
 	@NotNull
-	@Size(max = 4)
+	@Size(min = 4, max = 4, message = "senha deve ter 4 digitos")
 	private String senha;
-	private LocalDate validadeCartao;
 	private LocalDate dataHoraCriacaoCartao;
 }

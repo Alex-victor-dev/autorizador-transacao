@@ -13,6 +13,7 @@ public class TransacaoResponse {
 	private StatusCompra statusCompra;
 	private Double valor;
 	private String numeroCartao;
+	private Double limiteCartao;
 	private UUID idTransacao;
 
 }

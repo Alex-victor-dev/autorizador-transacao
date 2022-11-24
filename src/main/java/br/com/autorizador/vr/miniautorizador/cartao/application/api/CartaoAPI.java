@@ -15,20 +15,20 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v1/cliente/{idCliente}")
+@RequestMapping("/v1/cliente/{idCliente}/cartao")
 public interface CartaoAPI {
 
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	CartaoResponse criaCartao(@PathVariable UUID idCliente, @RequestBody @Valid CartaoRequest cartaoRequest);
-	
+
 	@GetMapping(value = "numeroCartao")
 	@ResponseStatus(code = HttpStatus.OK)
 	CartaoDetalhadoResponse getCartaoPorNumero(@RequestParam String numeroCartao);
-	
+
 	@PostMapping("realizaTransacao")
 	@ResponseStatus(code = HttpStatus.OK)
-	TransacaoResponse postTransacao(@RequestBody @Valid TransacaoRequest transacaoRequest,@RequestParam String numeroCartao, @RequestParam String senha) ;
-	
+	TransacaoResponse postTransacao(@RequestBody @Valid TransacaoRequest transacaoRequest,
+			@RequestParam String numeroCartao);
 
 }

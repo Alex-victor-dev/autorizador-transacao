@@ -20,8 +20,8 @@ public class CartaoController implements CartaoAPI {
 	@Override
 	public CartaoResponse criaCartao(UUID idCliente, @Valid CartaoRequest cartaoRequest) {
 		log.info("[inicia] CartaoController - criaCartao");
-		log.info("[idCliente] {}",idCliente);
-		CartaoResponse cartao = cartaoService.criaCartao(idCliente,cartaoRequest);
+		log.info("[idCliente] {}", idCliente);
+		CartaoResponse cartao = cartaoService.criaCartao(idCliente, cartaoRequest);
 		log.info("[finaliza] CartaoController - criaCartao");
 		return cartao;
 	}
@@ -29,19 +29,17 @@ public class CartaoController implements CartaoAPI {
 	@Override
 	public CartaoDetalhadoResponse getCartaoPorNumero(String numeroCartao) {
 		log.info("[inicia] CartaoController - getCartaoPorNumero");
-		log.info("[idCliente] {}",numeroCartao);
+		log.info("[idCliente] {}", numeroCartao);
 		CartaoDetalhadoResponse cartaoDetalhado = cartaoService.getCartaoPorNumero(numeroCartao);
 		log.info("[inicia] CartaoController - getCartaoPorNumero");
 		return cartaoDetalhado;
 	}
 
 	@Override
-	public TransacaoResponse postTransacao(@Valid TransacaoRequest transacaoRequest, String numeroCartao,
-			String senha) {
+	public TransacaoResponse postTransacao(@Valid TransacaoRequest transacaoRequest, String numeroCartao) {
 		log.info("[inicia] CartaoController - postTransacao");
 		log.info("[numeroCartao]{}", numeroCartao);
-		log.info("[senha]{}", senha);		
-		TransacaoResponse transacao = cartaoService.realizaTransacao(transacaoRequest, numeroCartao, senha);
+		TransacaoResponse transacao = cartaoService.realizaTransacao(transacaoRequest, numeroCartao);
 		log.info("[finaliza] CartaoController - postTransacao");
 		return transacao;
 	}

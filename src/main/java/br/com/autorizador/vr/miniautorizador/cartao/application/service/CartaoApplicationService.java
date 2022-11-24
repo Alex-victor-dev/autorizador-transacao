@@ -18,8 +18,8 @@ import br.com.autorizador.vr.miniautorizador.cartao.domain.Cartao;
 import br.com.autorizador.vr.miniautorizador.cartao.domain.StatusCompra;
 import br.com.autorizador.vr.miniautorizador.cartao.domain.Transacao;
 import br.com.autorizador.vr.miniautorizador.cliente.application.service.ClienteService;
-import br.com.autorizador.vr.miniautorizador.cliente.handler.APIException;
-import br.com.autorizador.vr.miniautorizador.cliente.handler.HandleException;
+import br.com.autorizador.vr.miniautorizador.handler.APIException;
+import br.com.autorizador.vr.miniautorizador.handler.HandleException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -54,14 +54,12 @@ public class CartaoApplicationService implements CartaoService {
 
 	@Override
 	@Transactional
-	public TransacaoResponse realizaTransacao(@Valid TransacaoRequest transacaoRequest, String numeroCartao,
-			String senha) {
+	public TransacaoResponse realizaTransacao(@Valid TransacaoRequest transacaoRequest, String numeroCartao) {
 		log.info("[inicia] CartaoApplicationService - realizaTransacao");
 		Cartao cartao = cartaoRepository.buscaCartaoPorNumero(numeroCartao);
 		if (cartao == null) {
 			throw APIException.build(HttpStatus.UNAUTHORIZED,
 					"Imposivel Realizar a Transacao Numero do cartao Inexistente");
-
 		}
 		Transacao transacao = cartaoRepository.salvaTransacao(new Transacao(transacaoRequest));
 		if (cartao.getLimiteCartao() < transacao.getValorCompra()) {
@@ -71,7 +69,8 @@ public class CartaoApplicationService implements CartaoService {
 		cartaoRepository.salvaCartao(cartao);
 		log.info("[finaliza] CartaoApplicationService - realizaTransacao");
 		return TransacaoResponse.builder().statusCompra(StatusCompra.APROVADA).valor(transacao.getValorCompra())
-				.numeroCartao(cartao.getNumeroCartao()).idTransacao(transacao.getIdTransacao()).build();
+				.numeroCartao(cartao.getNumeroCartao()).idTransacao(transacao.getIdTransacao())
+				.limiteCartao(cartao.getLimiteCartao()).build();
 	}
 
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.autorizador.vr.miniautorizador.cliente.application.repository.ClienteRepository;
 import br.com.autorizador.vr.miniautorizador.cliente.domain.Cliente;
-import br.com.autorizador.vr.miniautorizador.cliente.handler.APIException;
+import br.com.autorizador.vr.miniautorizador.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 

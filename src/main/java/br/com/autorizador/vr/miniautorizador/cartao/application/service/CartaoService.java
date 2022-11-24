@@ -16,6 +16,6 @@ public interface CartaoService {
 
 	CartaoDetalhadoResponse getCartaoPorNumero(String numeroCartao);
 
-	TransacaoResponse realizaTransacao(@Valid TransacaoRequest transacaoRequest, String numeroCartao, String senha) ;
+	TransacaoResponse realizaTransacao(@Valid TransacaoRequest transacaoRequest, String numeroCartao);
 
 }
