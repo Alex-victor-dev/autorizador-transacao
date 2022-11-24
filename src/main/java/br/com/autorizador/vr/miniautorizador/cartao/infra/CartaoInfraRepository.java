@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 import br.com.autorizador.vr.miniautorizador.cartao.application.repository.CartaoRepository;
 import br.com.autorizador.vr.miniautorizador.cartao.domain.Cartao;
 import br.com.autorizador.vr.miniautorizador.cartao.domain.Transacao;
+import br.com.autorizador.vr.miniautorizador.cartao.domain.Validacao;
+import br.com.autorizador.vr.miniautorizador.cliente.handler.InexistenteException;
+import br.com.autorizador.vr.miniautorizador.cliente.handler.InsuficienteException;
+import br.com.autorizador.vr.miniautorizador.cliente.handler.SenhaInvalidaException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -35,9 +39,9 @@ public class CartaoInfraRepository implements CartaoRepository {
 	@Override
 	public Transacao salvaTransacao(Transacao transacao) {
 		log.info("[inicia] CartaoInfraRepository - salvaTransacao");
-		Transacao transacaoSalva = transacaoInfraJpaRepository.save(transacao);
+		transacaoInfraJpaRepository.save(transacao);
 		log.info("[finaliza] CartaoInfraRepository - salvaTransacao");
-		return transacaoSalva;
+		return transacao;
 	}
 
 }
