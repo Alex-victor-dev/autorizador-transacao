@@ -13,13 +13,13 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class CartaoInfraRepository implements CartaoRepository {
 
-	private final CartaoInfraJpaRepository cartaoInfraJpaRepository;
-	private final TransacaoInfraJpaRepository transacaoInfraJpaRepository;
+	private final CartaoInfraMongoRepository cartaoInfraMongoRepository;
+	private final TransacaoInfraMongoRepository transacaoInfraMongoRepository;
 
 	@Override
 	public Cartao salvaCartao(Cartao cartao) {
 		log.info("[inicia] CartaoInfraRepository - salvaCartao");
-		cartaoInfraJpaRepository.save(cartao);
+		cartaoInfraMongoRepository.save(cartao);
 		log.info("[finaliza] CartaoInfraRepository - salvaCartao");
 		return cartao;
 	}
@@ -27,7 +27,7 @@ public class CartaoInfraRepository implements CartaoRepository {
 	@Override
 	public Cartao buscaCartaoPorNumero(String numeroCartao) {
 		log.info("[inicia] CartaoInfraRepository - buscaCartaoPorNumero");
-		Cartao cartao = cartaoInfraJpaRepository.findByNumeroCartao(numeroCartao);
+		Cartao cartao = cartaoInfraMongoRepository.findByNumeroCartao(numeroCartao);
 		log.info("[finaliza] CartaoInfraRepository - buscaCartaoPorNumero");
 		return cartao;
 	}
@@ -35,7 +35,7 @@ public class CartaoInfraRepository implements CartaoRepository {
 	@Override
 	public Transacao salvaTransacao(Transacao transacao) {
 		log.info("[inicia] CartaoInfraRepository - salvaTransacao");
-		transacaoInfraJpaRepository.save(transacao);
+		transacaoInfraMongoRepository.save(transacao);
 		log.info("[finaliza] CartaoInfraRepository - salvaTransacao");
 		return transacao;
 	}

@@ -17,12 +17,12 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class ClienteInfraRepository implements ClienteRepository {
 
-	private final ClienteInfraJpaRepository clienteInfraJpaRepository;
+	private final ClienteInfraMongoRepository clienteInfraMongoRepository;
 
 	@Override
 	public Cliente salvaCliente(Cliente cliente) {
 		log.info("[inicia] ClienteInfraRepository - salvaCliente");
-		clienteInfraJpaRepository.save(cliente);
+		clienteInfraMongoRepository.save(cliente);
 		log.info("[finaliza] ClienteInfraRepository- salvaCliente");
 		return cliente;
 	}
@@ -30,7 +30,7 @@ public class ClienteInfraRepository implements ClienteRepository {
 	@Override
 	public Cliente buscaClientePorId(UUID idCliente) {
 		log.info("[inicia] ClienteInfraRepository - buscaClientePorId");
-		Cliente cliente = clienteInfraJpaRepository.findById(idCliente)
+		Cliente cliente = clienteInfraMongoRepository.findById(idCliente)
 				.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Cliente Nao encontrado:" + idCliente));
 		log.info("[finaliza] ClienteInfraRepository- buscaClientePorId");
 		return cliente;
@@ -39,7 +39,7 @@ public class ClienteInfraRepository implements ClienteRepository {
 	@Override
 	public List<Cliente> buscaTodosClientes() {
 		log.info("[inicia] ClienteInfraRepository - buscaTodosClientes");
-		List<Cliente> cliente = clienteInfraJpaRepository.findAll();
+		List<Cliente> cliente = clienteInfraMongoRepository.findAll();
 		log.info("[finaliza] ClienteInfraRepository - buscaTodosClientes");
 		return cliente;
 	}

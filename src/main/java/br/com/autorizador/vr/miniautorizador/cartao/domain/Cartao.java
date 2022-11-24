@@ -4,14 +4,13 @@ import java.time.LocalDate;
 import java.util.Random;
 import java.util.UUID;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import br.com.autorizador.vr.miniautorizador.cartao.application.api.CartaoRequest;
 import br.com.autorizador.vr.miniautorizador.handler.HandleException;
@@ -19,17 +18,14 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "cartao")
+@Document(collection = "cartao")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Cartao {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(columnDefinition = "uuid", name = "idCartao", updatable = false, unique = true, nullable = false)
 	private UUID idCartao;
 	@NotNull
-	@Column(columnDefinition = "uuid", name = "idCartaoCliente", nullable = false)
 	private UUID idCartaoCliente;
 	@NotNull
 	private String numeroCartao;
@@ -38,10 +34,11 @@ public class Cartao {
 	private String senha;
 	private Double limiteCartao;
 	private LocalDate validadeCartao;
-	@Column(name = "data_criacao")
+	@Indexed(name = "data_criacao")
 	private LocalDate dataHoraCriacaoCartao;
 
 	public Cartao(UUID idCliente, @Valid CartaoRequest cartaoRequest) {
+		this.idCartao = UUID.randomUUID();
 		this.idCartaoCliente = idCliente;
 		this.numeroCartao = gerarDigitosAleatorios(16);
 		this.senha = cartaoRequest.getSenha();

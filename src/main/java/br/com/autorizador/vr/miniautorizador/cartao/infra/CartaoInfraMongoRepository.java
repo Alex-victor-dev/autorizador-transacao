@@ -2,11 +2,11 @@ package br.com.autorizador.vr.miniautorizador.cartao.infra;
 
 import java.util.UUID;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import br.com.autorizador.vr.miniautorizador.cartao.domain.Cartao;
 
-public interface CartaoInfraJpaRepository extends JpaRepository<Cartao, UUID> {
+public interface CartaoInfraMongoRepository extends MongoRepository<Cartao, UUID> {
 
 	Cartao findByNumeroCartao(String numeroCartao);
 }

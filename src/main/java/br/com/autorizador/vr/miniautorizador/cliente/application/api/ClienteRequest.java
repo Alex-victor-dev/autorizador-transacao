@@ -1,10 +1,9 @@
 package br.com.autorizador.vr.miniautorizador.cliente.application.api;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+
+import org.springframework.data.mongodb.core.index.Indexed;
 
 import br.com.autorizador.vr.miniautorizador.cliente.domain.Sexo;
 import lombok.Value;
@@ -16,8 +15,8 @@ public class ClienteRequest {
 	private String nomeCompleto;
 	@NotBlank
 	@Email
-	@Column(unique = true)
+	@Indexed(unique = true)
 	private String email;
-	@Enumerated(EnumType.STRING)
+	@Indexed
 	private Sexo sexo;
 }
