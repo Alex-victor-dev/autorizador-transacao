@@ -1,0 +1,14 @@
+server:
+  servlet:
+    context-path: /mini-autorizador
+
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      uri: ${MONGO_DB_URI:mongodb+srv://cliente:kyqX16VpmB2fbReu@credsystem.jjpbgpx.mongodb.net/CredSystem?retryWrites=true&w=majority}
+      auto-index-creation: true
+      
+springdoc:
+  swagger-ui:
+    path: /swagger
